@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:ml_project/core/theme/colors.dart';
+import 'package:ml_project/core/theme/text_styles.dart';
+import 'package:ml_project/views/splash_screen.dart';
+
 void main() {
   runApp(const MyApp());
 }
+
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
   @override
@@ -12,12 +17,19 @@ class MyApp extends StatelessWidget {
       minTextAdapt: true,
       splitScreenMode: true,
       child: MaterialApp(
-        title: 'Doctor App',
         theme: ThemeData(
-          primaryColor: Colors.blue,
-        ),
+            appBarTheme: AppBarTheme(
+          backgroundColor: ColorsManager.blue,
+          titleTextStyle: AppTextStyles.font17BlackW500.copyWith(
+            fontSize: 20.sp,
+            color: ColorsManager.white,
+          ),
+          centerTitle: true,
+          iconTheme: const IconThemeData(color: ColorsManager.white),
+        )),
+        title: 'SureShip App',
         debugShowCheckedModeBanner: false,
-      // home: const SplashScreen(),
+        home: const SplashScreen(),
       ),
     );
   }
