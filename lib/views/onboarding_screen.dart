@@ -45,7 +45,7 @@ class OnBoardingScreen extends StatelessWidget {
                     children: [
                       Expanded(
                         child: Text(
-                          '- This app uses machine learning to analyze client data, predicting order cancellations and suggesting solutions to preserve revenue.',
+                          '• This app uses machine learning to analyze client data, predicting order cancellations and suggesting solutions to preserve revenue.',
                           style: AppTextStyles.font15GrayW400,
                           softWrap: true,
                         ),
@@ -58,7 +58,7 @@ class OnBoardingScreen extends StatelessWidget {
                     children: [
                       Expanded(
                         child: Text(
-                          '- It helps in decision-making and ensures strategic choices.',
+                          '• It helps in decision-making and ensures strategic choices.',
                           style: AppTextStyles.font15GrayW400,
                           softWrap: true,
                         ),

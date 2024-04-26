@@ -107,7 +107,7 @@ class InputScreen extends StatelessWidget {
                   height: 5.h,
                 ),
                 Text(
-                  '* This refers to your clients\' feedback on your organisation.',
+                  '• This refers to your clients\' feedback on your organisation.\n• Preferly to write Postive or Negative.',
                   style: AppTextStyles.font15GrayW400.copyWith(
                     fontSize: 10.sp,
                   ),
@@ -204,7 +204,7 @@ class InputScreen extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     Text(
-                      '* If you have an address,find long & lat from here :',
+                      '• If you have an address,find long & lat from here :',
                       style: AppTextStyles.font15GrayW400.copyWith(
                         fontSize: 10.sp,
                       ),
