@@ -1,4 +1,4 @@
-# ml_project
+# Sureship App
 
 A new Flutter project.
 
