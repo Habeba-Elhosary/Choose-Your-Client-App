@@ -77,8 +77,7 @@ class OnBoardingScreen extends StatelessWidget {
                     onPressed: () {
                       Navigator.push(
                         context,
-                        MaterialPageRoute(
-                            builder: (context) => const InputScreen()),
+                        MaterialPageRoute(builder: (context) => InputScreen()),
                       );
                     },
                   ),

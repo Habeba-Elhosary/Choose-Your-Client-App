@@ -20,10 +20,7 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
             appBarTheme: AppBarTheme(
           backgroundColor: ColorsManager.blue,
-          titleTextStyle: AppTextStyles.font17BlackW500.copyWith(
-            fontSize: 20.sp,
-            color: ColorsManager.white,
-          ),
+          titleTextStyle: AppTextStyles.font20WhiteW600,
           centerTitle: true,
           iconTheme: const IconThemeData(color: ColorsManager.white),
         )),

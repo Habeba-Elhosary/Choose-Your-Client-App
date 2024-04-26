@@ -19,7 +19,7 @@ class AppTextStyles {
   );
 
   static TextStyle font17BlackW500 = TextStyle(
-    fontSize: 17.sp,
+    fontSize: 17,
     color: ColorsManager.black,
     fontWeight: FontWeight.w500,
     fontFamily: GoogleFonts.aBeeZee().fontFamily,
@@ -29,6 +29,20 @@ class AppTextStyles {
     fontSize: 15.sp,
     color: ColorsManager.gray,
     fontWeight: FontWeight.w400,
+    fontFamily: GoogleFonts.aBeeZee().fontFamily,
+  );
+
+  static TextStyle font11RedW600 = TextStyle(
+    fontSize: 11.sp,
+    color: ColorsManager.red,
+    fontWeight: FontWeight.w600,
+    fontFamily: GoogleFonts.aBeeZee().fontFamily,
+  );
+
+  static TextStyle font20WhiteW600 = TextStyle(
+    fontSize: 20,
+    color: ColorsManager.white,
+    fontWeight: FontWeight.w600,
     fontFamily: GoogleFonts.aBeeZee().fontFamily,
   );
 }
