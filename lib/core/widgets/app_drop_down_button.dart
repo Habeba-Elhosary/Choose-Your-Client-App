@@ -1,16 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:ml_project/core/theme/colors.dart';
-import 'package:ml_project/core/theme/text_styles.dart';
+import 'package:ml_project/core/themes/colors.dart';
+import '../themes/text_styles.dart';
 
 class AppDropDownButton extends StatefulWidget {
   final List<String> items;
   final String? selectedItem;
+  final Function(String?) onItemSelected;
 
   const AppDropDownButton({
     super.key,
     required this.items,
     required this.selectedItem,
+    required this.onItemSelected,
   });
 
   @override
@@ -19,6 +21,19 @@ class AppDropDownButton extends StatefulWidget {
 
 class AppDropDownButtonState extends State<AppDropDownButton> {
   String? _selectedItem;
+  late List<String> _mutableItems;
+
+  @override
+  void initState() {
+    super.initState();
+    _selectedItem = widget.selectedItem;
+    _mutableItems = List.from(widget.items);
+    if (!_mutableItems.contains(widget.selectedItem)) {
+      setState(() {
+        _mutableItems.insert(0, widget.selectedItem!);
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -36,8 +51,9 @@ class AppDropDownButtonState extends State<AppDropDownButton> {
               setState(() {
                 _selectedItem = newValue;
               });
+              widget.onItemSelected(newValue);
             },
-            items: widget.items.map((String value) {
+            items: _mutableItems.map((String value) {
               return DropdownMenuItem<String>(
                 value: value,
                 child: Text(value),

@@ -3,7 +3,7 @@
 import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:ml_project/core/theme/colors.dart';
+import 'package:ml_project/core/themes/colors.dart';
 import 'package:ml_project/views/onboarding_screen.dart';
 import 'package:page_transition/page_transition.dart';
 

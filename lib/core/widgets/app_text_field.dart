@@ -1,9 +1,10 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 // ignore_for_file: must_be_immutable
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:ml_project/core/theme/colors.dart';
-import 'package:ml_project/core/theme/text_styles.dart';
+import 'package:ml_project/core/themes/colors.dart';
+import 'package:ml_project/core/themes/text_styles.dart';
 
 class AppTextFormField extends StatelessWidget {
   String? hintText;
@@ -11,14 +12,16 @@ class AppTextFormField extends StatelessWidget {
   Widget? suffix;
   TextInputType? textInputType;
   Function(String)? onChanged;
+  TextEditingController controller;
 
   AppTextFormField({
     super.key,
-    this.onChanged,
     this.hintText,
+    this.hintTextStyle,
     this.suffix,
     this.textInputType,
-    this.hintTextStyle,
+    this.onChanged,
+    required this.controller,
   });
 
   @override
@@ -36,6 +39,7 @@ class AppTextFormField extends StatelessWidget {
           //   return 'invalid';
           // }
         },
+        controller: controller,
         onChanged: onChanged,
         textAlign: TextAlign.center,
         style: AppTextStyles.font15GrayW400.copyWith(fontSize: 14.sp),

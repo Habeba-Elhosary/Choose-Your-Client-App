@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:ml_project/core/theme/colors.dart';
-import 'package:ml_project/core/theme/text_styles.dart';
+import 'package:ml_project/core/cubit/check_cancellation_cubit.dart';
+import 'package:ml_project/core/cubit/check_cancellation_state.dart';
+import 'package:ml_project/core/themes/colors.dart';
+import 'package:ml_project/core/themes/text_styles.dart';
 import 'package:ml_project/core/widgets/app_text_button.dart';
 import 'package:ml_project/views/input_screen.dart';
 
@@ -14,37 +17,58 @@ class OutputScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text("Results")),
-      body: SafeArea(
-        child: SingleChildScrollView(
-          child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 20.h),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  'Your Results :',
-                  style: AppTextStyles.font15BlueW600
-                      .copyWith(fontSize: 20.sp, fontWeight: FontWeight.w500),
+      body: BlocBuilder<CheckCancellationCubit, CheckCancellationStates>(
+        builder: (context, state) {
+          if (state is CheckCancellatioLoading) {
+            return const Center(
+                child: CircularProgressIndicator(
+              color: ColorsManager.blue,
+            ));
+          } else if (state is CheckCancellatioError) {
+            return Center(
+              child: Text(state.error.toString()),
+            );
+          } else if (state is CheckCancellatioSuccess) {
+  
+            return SafeArea(
+              child: SingleChildScrollView(
+                child: Padding(
+                  padding:
+                      EdgeInsets.symmetric(horizontal: 20.w, vertical: 20.h),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'Your Results :',
+                        style: AppTextStyles.font15BlueW600.copyWith(
+                            fontSize: 20.sp, fontWeight: FontWeight.w500),
+                      ),
+                      SizedBox(height: 20.h),
+                    
+                      iscancelled
+                          ? const WillBeCancelled()
+                          : const WillNotBeCancelled(),
+                      SizedBox(height: 70.h),
+                      AppTextButton(
+                          buttonText: 'Back to previous screen',
+                          textStyle: AppTextStyles.font15BlueW600
+                              .copyWith(color: ColorsManager.white),
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => const InputScreen()),
+                            );
+                          }),
+                    ],
+                  ),
                 ),
-                SizedBox(height: 20.h),
-                iscancelled
-                    ? const WillBeCancelled()
-                    : const WillNotBeCancelled(),
-                SizedBox(height: 70.h),
-                AppTextButton(
-                    buttonText: 'Back to previous screen',
-                    textStyle: AppTextStyles.font15BlueW600
-                        .copyWith(color: ColorsManager.white),
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => InputScreen()),
-                      );
-                    }),
-              ],
-            ),
-          ),
-        ),
+              ),
+            );
+          } else {
+            return const Center(child: Text('No data available'));
+          }
+        },
       ),
     );
   }

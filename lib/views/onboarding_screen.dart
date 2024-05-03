@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:ml_project/core/theme/colors.dart';
-import 'package:ml_project/core/theme/text_styles.dart';
+import 'package:ml_project/core/themes/colors.dart';
+import 'package:ml_project/core/themes/text_styles.dart';
 import 'package:ml_project/core/widgets/app_text_button.dart';
 import 'package:ml_project/views/input_screen.dart';
 
@@ -77,7 +77,7 @@ class OnBoardingScreen extends StatelessWidget {
                     onPressed: () {
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => InputScreen()),
+                        MaterialPageRoute(builder: (context) => const InputScreen()),
                       );
                     },
                   ),

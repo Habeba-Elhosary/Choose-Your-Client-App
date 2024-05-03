@@ -1,6 +1,6 @@
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:ml_project/core/theme/colors.dart';
+import 'package:ml_project/core/themes/colors.dart';
 import 'package:flutter/material.dart';
 
 class AppTextStyles {
