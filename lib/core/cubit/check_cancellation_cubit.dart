@@ -9,17 +9,18 @@ class CheckCancellationCubit extends Cubit<CheckCancellationStates> {
   final MyDataRepository _repository = MyDataRepository();
 
   void postData({
-      required int age,
-      required String gender,
-        String? educationalQualification,
-      required int familySize,
-       String? monthlyIncome,
-       String? occupation,
-      required String maritalStatus,
-      required double latitude,
-      required double longitude,
-      required int pinCode,
-      required String feedback}) async {
+    required int age,
+    required String gender,
+    String? educationalQualification,
+    required int familySize,
+    String? monthlyIncome,
+    String? occupation,
+    required String maritalStatus,
+    required double latitude,
+    required double longitude,
+    required int pinCode,
+    required String feedback,
+  }) async {
     emit(CheckCancellatioLoading());
     try {
       final result = await _repository.postData(
