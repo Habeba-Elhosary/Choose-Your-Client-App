@@ -30,7 +30,6 @@ class OutputScreen extends StatelessWidget {
             );
           } else if (state is CheckCancellationSuccess) {
             final isCancelled = state.data.toString();
-            debugPrint('الحقونااااااااااااااااااي');
             debugPrint(isCancelled);
             return SafeArea(
               child: SingleChildScrollView(

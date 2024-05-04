@@ -1,8 +1,8 @@
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:ml_project/core/cubit/check_cancellation_state.dart';
 import 'package:ml_project/core/models/request_model.dart';
-import '../repository/data_repo.dart';
-import 'check_cancellation_state.dart';
+import 'package:ml_project/core/repository/data_repo.dart';
 
 class CheckCancellationCubit extends Cubit<CheckCancellationStates> {
   CheckCancellationCubit() : super(CheckCancellationInitial());
@@ -10,17 +10,17 @@ class CheckCancellationCubit extends Cubit<CheckCancellationStates> {
   final MyDataRepository _repository = MyDataRepository();
 
   void postData({
-    required int age,
+    int? age,
     required String gender,
-    required String educationalQualification,
-    required int familySize,
-    required String monthlyIncome,
-    required String occupation,
+    String? educationalQualification,
+    int? familySize,
+    String? monthlyIncome,
+    String? occupation,
     required String maritalStatus,
     required double latitude,
     required double longitude,
     required int pinCode,
-    required String feedback,
+    String? feedback,
   }) async {
     emit(CheckCancellationLoading());
     try {
@@ -41,7 +41,6 @@ class CheckCancellationCubit extends Cubit<CheckCancellationStates> {
       );
       if (result.prediction.isNotEmpty) {
         emit(CheckCancellationSuccess(data: result.prediction.first));
-        debugPrint("بحبك يمصررررررررررر");
         debugPrint(result.prediction.first);
       } else {
         emit(CheckCancellationError(error: 'Prediction not found'));

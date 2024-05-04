@@ -17,17 +17,29 @@ class InputScreen extends StatefulWidget {
 }
 
 class _InputScreenState extends State<InputScreen> {
-  late String gender;
-  late String maritalStatus;
-   String occupation = '';
-   String monthlyIncome = '';
-   String educationalQualification = '';
-  final TextEditingController ageController = TextEditingController();
-  final TextEditingController familySizeController = TextEditingController();
-  final latitudeController = TextEditingController();
-  final longitudeController = TextEditingController();
-  final pinCodeController = TextEditingController();
-  final TextEditingController feedbackController = TextEditingController();
+  String gender = 'Male';
+  String maritalStatus = 'Single';
+  String? occupation;
+  String? monthlyIncome;
+  String? educationalQualification;
+  TextEditingController? ageController;
+  TextEditingController? familySizeController;
+  late TextEditingController latitudeController;
+  late TextEditingController longitudeController;
+  late TextEditingController pinCodeController;
+  TextEditingController? feedbackController;
+
+  @override
+  void initState() {
+    super.initState();
+    ageController = TextEditingController();
+    familySizeController = TextEditingController();
+    latitudeController = TextEditingController();
+    longitudeController = TextEditingController();
+    pinCodeController = TextEditingController();
+    feedbackController = TextEditingController();
+  }
+
   final formKey = GlobalKey<FormState>();
   final Uri _url =
       Uri.parse('https://www.latlong.net/convert-address-to-lat-long.html');
@@ -111,7 +123,7 @@ class _InputScreenState extends State<InputScreen> {
                       ],
                       selectedItem: 'Select one',
                       onItemSelected: (value) {
-                        occupation = value!;
+                        occupation = value!.isEmpty ? null : value;
                       }),
                   SizedBox(height: 15.h),
                   Text('Monthly Income :', style: AppTextStyles.font15BlueW600),
@@ -126,7 +138,7 @@ class _InputScreenState extends State<InputScreen> {
                       ],
                       selectedItem: 'Select one',
                       onItemSelected: (value) {
-                        monthlyIncome = value!;
+                        monthlyIncome = value!.isEmpty ? null : value;
                       }),
                   SizedBox(height: 15.h),
                   Text('Educational Qualifications :',
@@ -142,7 +154,8 @@ class _InputScreenState extends State<InputScreen> {
                       ],
                       selectedItem: 'Select one',
                       onItemSelected: (value) {
-                        educationalQualification = value!;
+                        educationalQualification =
+                            value!.isEmpty ? null : value;
                       }),
                   SizedBox(height: 15.h),
                   Text(
@@ -164,15 +177,13 @@ class _InputScreenState extends State<InputScreen> {
                   AppTextFormField(
                     onChanged: (value) {
                       setState(() {
-                        if (value.isEmpty) {
-                          feedbackController.text = '';
-                        } else {
-                          feedbackController.text = value;
-                        }
+                        value.isEmpty
+                            ? feedbackController = null
+                            : feedbackController?.text = value;
                       });
                     },
                     textInputType: TextInputType.text,
-                    controller: feedbackController,
+                    controller: feedbackController!,
                   ),
                   SizedBox(
                     height: 15.h,
@@ -191,14 +202,12 @@ class _InputScreenState extends State<InputScreen> {
                                 textInputType: TextInputType.number,
                                 onChanged: (value) {
                                   setState(() {
-                                    if (value.isEmpty) {
-                                      ageController.text = '0';
-                                    } else {
-                                      ageController.text = value;
-                                    }
+                                    value.isEmpty
+                                        ? ageController = null
+                                        : ageController?.text = value;
                                   });
                                 },
-                                controller: ageController,
+                                controller: ageController!,
                               ),
                             ),
                           ],
@@ -217,14 +226,14 @@ class _InputScreenState extends State<InputScreen> {
                                 textInputType: TextInputType.number,
                                 onChanged: (value) {
                                   setState(() {
-                                    if (value.isEmpty) {
-                                      familySizeController.text = '0';
-                                    } else {
-                                      familySizeController.text = value;
-                                    }
+                                    value.isEmpty
+                                        ? familySizeController = null
+                                        : familySizeController?.text = value;
+
+                                    // }
                                   });
                                 },
-                                controller: familySizeController,
+                                controller: familySizeController!,
                               ),
                             ),
                           ],
@@ -347,17 +356,17 @@ class _InputScreenState extends State<InputScreen> {
                         final cubit =
                             BlocProvider.of<CheckCancellationCubit>(context);
                         cubit.postData(
-                          age: int.parse(ageController.text),
+                          age: int.tryParse(ageController!.text),
                           gender: gender,
                           educationalQualification: educationalQualification,
-                          familySize: int.parse(familySizeController.text),
+                          familySize: int.tryParse(familySizeController!.text),
                           monthlyIncome: monthlyIncome,
                           occupation: occupation,
                           maritalStatus: maritalStatus,
                           latitude: double.parse(latitudeController.text),
                           longitude: double.parse(longitudeController.text),
                           pinCode: int.parse(pinCodeController.text),
-                          feedback: feedbackController.text,
+                          feedback: feedbackController?.text,
                         );
                         Navigator.of(context).push(
                           MaterialPageRoute(

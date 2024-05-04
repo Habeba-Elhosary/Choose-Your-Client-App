@@ -1,16 +1,26 @@
-# Sureship App
+# SureShip App 📈
 
-A new Flutter project.
+## Introduction ✨
+SureShip app is a unique tool that helps businesses receive orders from their applications. SureShip analyses client data using AI technologies and a Flask API to predict order cancellations and make revenue-preserving recommendations. This application uses machine learning algorithms to provide significant insights and assist in decision-making, assuring smart decisions. It also recommends solutions to protect firms' rights and makes advice on how to retain customers. Companies using SureShip may proactively address probable order cancellations and take necessary actions to retain customer happiness and maximise profitability.
 
-## Getting Started
+![flutter](https://img.shields.io/badge/Flutter-Framework-green?logo=flutter)
+![Dart](https://img.shields.io/badge/Dart-Language-blue?logo=dart)
 
-This project is a starting point for a Flutter application.
+## Video 📸
 
-A few resources to get you started if this is your first Flutter project:
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+## Features 💡
+- :white_check_mark: User-friendly interface with intuitive design.
+- :white_check_mark: Reliable Flask API integration and error handling for API requests.
+- :white_check_mark: Accurate prediction algorithms to analyze client data and predict order cancellations.
+- :white_check_mark: Revenue preservation suggestions and strategic decision-making support.
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+
+## Dependencies 🛠
+-  `cupertino_icons`
+-  `flutter_screenutil`
+-  `google_fonts`
+-  `animated_splash_screen`
+-  `url_launcher`
+-  `flutter_bloc`
+-  `dio`
