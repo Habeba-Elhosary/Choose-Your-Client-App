@@ -1,27 +1,28 @@
+import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:ml_project/core/cubit/check_cancellation_state.dart';
 import 'package:ml_project/core/models/request_model.dart';
 import '../repository/data_repo.dart';
+import 'check_cancellation_state.dart';
 
 class CheckCancellationCubit extends Cubit<CheckCancellationStates> {
-  CheckCancellationCubit() : super(CheckCancellatioInitial());
+  CheckCancellationCubit() : super(CheckCancellationInitial());
 
   final MyDataRepository _repository = MyDataRepository();
 
   void postData({
     required int age,
     required String gender,
-    String? educationalQualification,
+    required String educationalQualification,
     required int familySize,
-    String? monthlyIncome,
-    String? occupation,
+    required String monthlyIncome,
+    required String occupation,
     required String maritalStatus,
     required double latitude,
     required double longitude,
     required int pinCode,
     required String feedback,
   }) async {
-    emit(CheckCancellatioLoading());
+    emit(CheckCancellationLoading());
     try {
       final result = await _repository.postData(
         MyRequestItemsModel(
@@ -38,13 +39,15 @@ class CheckCancellationCubit extends Cubit<CheckCancellationStates> {
           feedback: feedback,
         ),
       );
-      if (result != null) {
-        emit(CheckCancellatioSuccess(data: result));
+      if (result.prediction.isNotEmpty) {
+        emit(CheckCancellationSuccess(data: result.prediction.first));
+        debugPrint("بحبك يمصررررررررررر");
+        debugPrint(result.prediction.first);
       } else {
-        emit(CheckCancellatioError(error: 'Result is null'));
+        emit(CheckCancellationError(error: 'Prediction not found'));
       }
     } on Exception catch (e) {
-      emit(CheckCancellatioError(error: 'Error: $e'));
+      emit(CheckCancellationError(error: 'Error: $e'));
     }
   }
 }

@@ -22,12 +22,13 @@ class MyApp extends StatelessWidget {
         create: (context) => CheckCancellationCubit(),
         child: MaterialApp(
           theme: ThemeData(
-              appBarTheme: AppBarTheme(
-            backgroundColor: ColorsManager.blue,
-            titleTextStyle: AppTextStyles.font20WhiteW600,
-            centerTitle: true,
-            iconTheme: const IconThemeData(color: ColorsManager.white),
-          )),
+            appBarTheme: AppBarTheme(
+              backgroundColor: ColorsManager.blue,
+              titleTextStyle: AppTextStyles.font20WhiteW600,
+              centerTitle: true,
+              iconTheme: const IconThemeData(color: ColorsManager.white),
+            ),
+          ),
           title: 'SureShip App',
           debugShowCheckedModeBanner: false,
           home: const SplashScreen(),

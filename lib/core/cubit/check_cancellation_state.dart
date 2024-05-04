@@ -1,17 +1,15 @@
-import '../models/request_model.dart';
-
 abstract class CheckCancellationStates {}
 
-class CheckCancellatioInitial extends CheckCancellationStates {}
+class CheckCancellationInitial extends CheckCancellationStates {}
 
-class CheckCancellatioLoading extends CheckCancellationStates {}
+class CheckCancellationLoading extends CheckCancellationStates {}
 
-class CheckCancellatioSuccess extends CheckCancellationStates {
-  final MyRequestItemsModel data;
-  CheckCancellatioSuccess({required this.data});
+class CheckCancellationSuccess extends CheckCancellationStates {
+  final String data;
+  CheckCancellationSuccess({required this.data});
 }
 
-class CheckCancellatioError extends CheckCancellationStates {
+class CheckCancellationError extends CheckCancellationStates {
   final String error;
-  CheckCancellatioError({required this.error});
+  CheckCancellationError({required this.error});
 }

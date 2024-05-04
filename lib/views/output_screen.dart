@@ -1,17 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:ml_project/core/cubit/check_cancellation_cubit.dart';
-import 'package:ml_project/core/cubit/check_cancellation_state.dart';
-import 'package:ml_project/core/themes/colors.dart';
-import 'package:ml_project/core/themes/text_styles.dart';
-import 'package:ml_project/core/widgets/app_text_button.dart';
-import 'package:ml_project/views/input_screen.dart';
+import '../core/cubit/check_cancellation_cubit.dart';
+import '../core/cubit/check_cancellation_state.dart';
+import '../core/themes/colors.dart';
+import '../core/themes/text_styles.dart';
+import '../core/widgets/app_text_button.dart';
+import 'input_screen.dart';
 
 class OutputScreen extends StatelessWidget {
   const OutputScreen({super.key});
-
-  final bool iscancelled = true;
 
   @override
   Widget build(BuildContext context) {
@@ -19,17 +17,21 @@ class OutputScreen extends StatelessWidget {
       appBar: AppBar(title: const Text("Results")),
       body: BlocBuilder<CheckCancellationCubit, CheckCancellationStates>(
         builder: (context, state) {
-          if (state is CheckCancellatioLoading) {
+          if (state is CheckCancellationLoading) {
             return const Center(
-                child: CircularProgressIndicator(
-              color: ColorsManager.blue,
-            ));
-          } else if (state is CheckCancellatioError) {
-            return Center(
-              child: Text(state.error.toString()),
+              child: CircularProgressIndicator(
+                color: ColorsManager.blue,
+              ),
             );
-          } else if (state is CheckCancellatioSuccess) {
-  
+          } else if (state is CheckCancellationError) {
+            return Center(
+              child: Text(state.error.toString(),
+                  style: AppTextStyles.font11RedW600),
+            );
+          } else if (state is CheckCancellationSuccess) {
+            final isCancelled = state.data.toString();
+            debugPrint('الحقونااااااااااااااااااي');
+            debugPrint(isCancelled);
             return SafeArea(
               child: SingleChildScrollView(
                 child: Padding(
@@ -44,22 +46,23 @@ class OutputScreen extends StatelessWidget {
                             fontSize: 20.sp, fontWeight: FontWeight.w500),
                       ),
                       SizedBox(height: 20.h),
-                    
-                      iscancelled
-                          ? const WillBeCancelled()
-                          : const WillNotBeCancelled(),
+                      isCancelled == 'Yes'
+                          ? const WillNotBeCancelled()
+                          : const WillBeCancelled(),
                       SizedBox(height: 70.h),
                       AppTextButton(
-                          buttonText: 'Back to previous screen',
-                          textStyle: AppTextStyles.font15BlueW600
-                              .copyWith(color: ColorsManager.white),
-                          onPressed: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => const InputScreen()),
-                            );
-                          }),
+                        buttonText: 'Back to previous screen',
+                        textStyle: AppTextStyles.font15BlueW600
+                            .copyWith(color: ColorsManager.white),
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const InputScreen(),
+                            ),
+                          );
+                        },
+                      ),
                     ],
                   ),
                 ),

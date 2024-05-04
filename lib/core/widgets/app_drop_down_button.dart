@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:ml_project/core/themes/colors.dart';
+import '../themes/colors.dart';
 import '../themes/text_styles.dart';
 
 class AppDropDownButton extends StatefulWidget {
@@ -51,7 +51,12 @@ class AppDropDownButtonState extends State<AppDropDownButton> {
               setState(() {
                 _selectedItem = newValue;
               });
-              widget.onItemSelected(newValue);
+              if (newValue == null) {
+                // If newValue is null, set controller value to an empty string
+                widget.onItemSelected('');
+              } else {
+                widget.onItemSelected(newValue);
+              }
             },
             items: _mutableItems.map((String value) {
               return DropdownMenuItem<String>(

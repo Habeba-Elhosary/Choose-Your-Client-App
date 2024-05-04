@@ -2,8 +2,8 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:ml_project/core/themes/colors.dart';
-import 'package:ml_project/core/themes/text_styles.dart';
+import '../themes/colors.dart';
+import '../themes/text_styles.dart';
 
 class AppTextFormField extends StatelessWidget {
   String? hintText;
@@ -12,6 +12,7 @@ class AppTextFormField extends StatelessWidget {
   TextInputType? textInputType;
   Function(String)? onChanged;
   TextEditingController controller;
+  String? Function(String?)? validator;
 
   AppTextFormField({
     super.key,
@@ -20,6 +21,7 @@ class AppTextFormField extends StatelessWidget {
     this.suffix,
     this.textInputType,
     this.onChanged,
+    this.validator,
     required this.controller,
   });
 
@@ -29,15 +31,7 @@ class AppTextFormField extends StatelessWidget {
       height: 40.h,
       child: TextFormField(
         keyboardType: textInputType ?? TextInputType.none,
-        validator: (data) {
-          if (data!.isEmpty) {
-            return 'Field is empty ';
-          }
-          return null;
-          // else if (!EmailValidator.validate(data)) {
-          //   return 'invalid';
-          // }
-        },
+        validator:validator,
         controller: controller,
         onChanged: onChanged,
         textAlign: TextAlign.center,

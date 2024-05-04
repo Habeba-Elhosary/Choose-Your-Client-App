@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:ml_project/core/themes/colors.dart';
+import '../themes/colors.dart';
 
 class AppTextButton extends StatelessWidget {
   final double? borderRadius;
@@ -31,8 +31,8 @@ class AppTextButton extends StatelessWidget {
         shape: MaterialStateProperty.all<RoundedRectangleBorder>(
             RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(borderRadius ?? 16.r))),
-        backgroundColor: MaterialStateProperty.all(
-            backgroundColor ?? ColorsManager.blue),
+        backgroundColor:
+            MaterialStateProperty.all(backgroundColor ?? ColorsManager.blue),
         padding: MaterialStateProperty.all<EdgeInsetsGeometry>(
             EdgeInsets.symmetric(
                 horizontal: horizontalPadding?.w ?? 12.w,
